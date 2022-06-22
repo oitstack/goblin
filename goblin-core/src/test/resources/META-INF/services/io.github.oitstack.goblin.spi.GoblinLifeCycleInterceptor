@@ -1,0 +1,2 @@
+io.github.oitstack.goblin.core.spi.GoblinLifeCycleInterceptorOrder10
+io.github.oitstack.goblin.core.spi.OblinLifeCycleInterceptorOrder100

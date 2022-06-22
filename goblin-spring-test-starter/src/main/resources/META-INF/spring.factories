@@ -1,0 +1,1 @@
+org.springframework.test.context.TestExecutionListener=io.github.oitstack.goblin.spring.starter.GoblinTestExecutionListener

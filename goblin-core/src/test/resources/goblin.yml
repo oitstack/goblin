@@ -1,0 +1,11 @@
+dockerImages:
+  - type: "MYSQL"
+    imageVersion: "mysql:5.7"
+
+props:
+  test_prop: "prop"
+
+
+env:
+  TEST_ENV: "env"
+
