@@ -26,6 +26,26 @@
     <name>goblin-parent</name>
     <packaging>pom</packaging>
     <version>0.0.1</version>
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0</url>
+        </license>
+    </licenses>
+
+    <scm>
+        <url>https://github.com/oitstack/goblin</url>
+        <connection>scm:git:git://github.com/oitstack/goblin.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com/oitstack/goblin.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+
+    <developers>
+        <developer>
+            <name>The Goblin Framework</name>
+            <email>goblin@oppo.com</email>
+        </developer>
+    </developers>
     <profiles>
         <profile>
             <id>deploy</id>
