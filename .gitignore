@@ -1,0 +1,45 @@
+# maven ignore
+target/
+*.jar
+# enable mvnw
+!.mvn/wrapper/*
+*.war
+*.zip
+*.tar
+*.tar.gz
+
+# eclipse ignore
+.settings/
+.project
+.classpath
+
+# idea ignore
+.idea/
+*.ipr
+*.iml
+*.iws
+
+# vscode files
+.vscode/
+*.factorypath
+
+# temp ignore
+*.log
+*.cache
+*.diff
+*.patch
+*.tmp
+
+# system ignore
+.DS_Store
+Thumbs.db
+
+logs/
+tmp/
+dependency-reduced-pom.xml
+
+# site resources
+site/public/
+site/resources/
+site/node_modules/
+.hugo_build.lock
