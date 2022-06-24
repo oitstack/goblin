@@ -100,8 +100,11 @@
                         <execution>
                             <id>attach-javadocs</id>
                             <goals>
-                                <goal>jar</goal>
+                                <goal>jar-no-fork</goal>
                             </goals>
+                            <configuration>
+                                <additionalJOption>-Xdoclint:none</additionalJOption>
+                            </configuration>
                         </execution>
                     </executions>
                 </plugin>
