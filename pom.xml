@@ -29,6 +29,7 @@
     <description>
         Goblin is a lightweight testing framework.
     </description>
+    <url>https://github.com/oitstack</url>
     <licenses>
         <license>
             <name>Apache License, Version 2.0</name>
