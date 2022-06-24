@@ -25,7 +25,7 @@
 
     <name>goblin-parent</name>
     <packaging>pom</packaging>
-    <version>0.0.1</version>
+    <version>0.0.2-SNAPSHOT</version>
     <description>
         Goblin is a lightweight testing framework.
     </description>
@@ -84,7 +84,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
-        <revision>0.0.1</revision>
+        <revision>0.0.2-SNAPSHOT</revision>
     </properties>
 
     <build>

@@ -67,7 +67,7 @@ public class DamoclesManager {
      */
     private static final int EXPOSED_PORT = 8080;
 
-    private static final String DEFAULT_DAMOCLES_TAG = "damocles:1.0.3";
+    private static final String DEFAULT_DAMOCLES_TAG = "oitstack/damocles:v0.0.1";
     private AtomicBoolean damoclesStarted = new AtomicBoolean(false);
 
     /**
