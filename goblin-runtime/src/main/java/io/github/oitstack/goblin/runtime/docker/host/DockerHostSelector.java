@@ -67,7 +67,7 @@ public class DockerHostSelector {
 
         String selectedDockerHost = selectOneValidHost(dockerHostDiscoverStrategy.discover());
         if (StringUtils.isBlank(selectedDockerHost)) {
-            throw new RuntimeException("no invalid docker host.");
+            throw new RuntimeException("no valid docker host.");
         }
         this.selectedDockerHost = selectedDockerHost;
     }
