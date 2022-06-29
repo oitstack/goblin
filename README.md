@@ -33,6 +33,36 @@ goblin是一款可以用于单元测试,接口测试以及端到端测试的Java
 
 
 ## goblin 快速开始
+### 接入步骤
+![](https://github.com/oitstack/goblin_material/blob/main/Access-steps.png)
+### 单元测试示例
+```Java
+@ExtendWith(SpringExtension.class)
+@SpringBootTest
+@GoblinTest //该注解用于启动Goblin运行环境
+public class UserServiceTest {
+    @Autowired
+    private UserService userService;
+ 
+    @Test
+    @UsingDataSet //该注解用于给数据库预置数据，在用例执行之前会读取用于定义的对应用例的数据并插入到数据库.
+    public void testGetUserById() {
+        Long id = 1L;
+        Integer age = 11;
+        String name = "花花";
+        User user = userService.getById(id);
+ 
+        assertEquals(id, user.getId());
+    }
+}
+//UserServiceTest#testGetUserById-mysql.xml
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <User id="1" name="花花" age="11"/>
+    <User id="2" name="草草" age="18"/>
+</dataset>
+```
+
 
 ## goblin 能力介绍
 
