@@ -33,6 +33,7 @@ goblin是一款可以用于单元测试,接口测试以及端到端测试的Java
 
 
 ## goblin 快速开始
+完整接入样例请参考 [goblin-demo](https://github.com/oitstack/goblin-demo)
 ### 接入步骤
 ![](https://github.com/oitstack/goblin_material/blob/main/Access-steps.png)
 ### 单元测试示例
