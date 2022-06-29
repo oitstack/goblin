@@ -13,9 +13,17 @@ goblin是一款可以用于单元测试,接口测试以及端到端测试的Java
 ![](https://github.com/oitstack/goblin_material/blob/main/Layered-test.png)
 
 ### 单元测试痛点
-![](https://github.com/oitstack/goblin_material/blob/main/unit-test-bad.png)
+* **所依赖中间件复杂多样**<br>
+被测试应用往往依赖非常多的中间件，在测试过程中mock掉全部中间件依赖成本极高，需要对每种中间件进行内存化运行或者个性化mock。
+* **外部系统依赖多，协议繁杂**<br>
+外部系统依赖较多，接入协议包含http、dubbo、mq等，目前各个业务使用mock框架的选型、mock过程各式各样，新人接手需要研究各种不同的mock框架，学习成本高，工作量大。<br>
+* **数据准备和清理花费时间多**<br>
+对于测试数据的准备、清理，大家各自一套框架或逻辑，不统一，而且手写代码比较多，工作量大。<br>
 ### 自动化测试痛点
-![](https://github.com/oitstack/goblin_material/blob/main/auto-test-bad.png)
+* **所依赖服务无法真正隔离**<br>
+被测试应用往往依赖非常多的三方或者二方应用，这些应用都是公用的环境，同时提供给多套自动化环境甚至普通测试环境使用，多个环境产生的数据相互影响。
+* **中心化配置数据无法隔离**
+现在很多系统都使用了配置中心，与环境隔离类似，中心配置也无法隔离，这样基本上无法做到在自动化脚本中修改配置以达到测试的目的，因为一旦修改了配置，就会影响好其他环境的测试。
 ### goblin解决之道
 注： 置灰表示该能力待开源<br>
 ![](https://github.com/oitstack/goblin_material/blob/main/tao-of-goblin.png)
