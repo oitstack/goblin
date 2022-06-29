@@ -66,5 +66,15 @@ public class UserServiceTest {
 
 
 ## goblin 能力介绍
+### 支持单元测试
+![](https://github.com/oitstack/goblin_material/blob/main/unit-test.png)
+
+### 支持接口测试
+![](https://github.com/oitstack/goblin_material/blob/main/interface-test.png)
+
+### 支持端到端测试
+![](https://github.com/oitstack/goblin_material/blob/main/point-to-point-test.png)
+
+###支持数据的自动准备和断言
 
 ## goblin 实现原理
