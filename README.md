@@ -90,10 +90,11 @@ public class UserServiceTest {
 ![](https://github.com/oitstack/goblin_material/blob/main/point-to-point-test.png)
 
 ### 支持数据的自动准备和断言
-注： redis和mongodb后续开源
+注： redis和mongodb后续开源<br>
 ![](https://github.com/oitstack/goblin_material/blob/main/data-prepare-assert.png)
 
 ### 常用中间件的支持
+注： 当前仅开源了MySql, 其他的后续开源<br>
 ![](https://github.com/oitstack/goblin_material/blob/main/supported-middleware.png)
 
 
