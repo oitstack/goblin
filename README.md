@@ -75,6 +75,11 @@ public class UserServiceTest {
 ### 支持端到端测试
 ![](https://github.com/oitstack/goblin_material/blob/main/point-to-point-test.png)
 
-###支持数据的自动准备和断言
+### 支持数据的自动准备和断言
+![](https://github.com/oitstack/goblin_material/blob/main/data-prepare-assert.png)
+
+### 常用中间件的支持
+![](https://github.com/oitstack/goblin_material/blob/main/supported-middleware.png)
+
 
 ## goblin 实现原理
