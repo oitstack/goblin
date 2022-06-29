@@ -83,3 +83,4 @@ public class UserServiceTest {
 
 
 ## goblin 实现原理
+![](https://github.com/oitstack/goblin_material/blob/main/test-case-lifecycle.png)
