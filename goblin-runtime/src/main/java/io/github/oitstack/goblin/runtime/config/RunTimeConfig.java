@@ -32,7 +32,7 @@ public final class RunTimeConfig {
     public final static String AUTH_CONFIGS = RUNTIME_CONFIG_PREFIX + "DOCKER_AUTH_CONFIG";
     public final static String PREFIX_PROPERTY_KEY = RUNTIME_CONFIG_PREFIX + "default_docker_hub";
     public final static String DOCKER_SOCKET_OVERRIDE = RUNTIME_CONFIG_PREFIX + "_docker_socket_override";
-    public final static String REUSE_CONTAINER_ENABLE = RUNTIME_CONFIG_PREFIX + "reuse_container_enable";
+    public final static String REUSE_CONTAINER_ENABLE = RUNTIME_CONFIG_PREFIX + "enable_reuse_container";
     public final static String DAMOCLES_TAG = RUNTIME_CONFIG_PREFIX + "DAMOCLES_TAG";
     public final static String DOCKER_HOST_PREFIX = "tcp://";
 
@@ -193,7 +193,7 @@ public final class RunTimeConfig {
      * @return
      */
     public boolean getContainerEnableReuseFlag() {
-        return Boolean.parseBoolean(this.getOrDefault(RunTimeConfig.REUSE_CONTAINER_ENABLE, "false"));
+        return Boolean.parseBoolean(this.getOrDefault(RunTimeConfig.REUSE_CONTAINER_ENABLE, "true"));
     }
 
     /**

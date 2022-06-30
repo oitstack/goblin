@@ -23,6 +23,7 @@ import com.github.dockerjava.core.DockerClientImpl;
 import com.github.dockerjava.core.RemoteApiVersion;
 import com.github.dockerjava.transport.DockerHttpClient;
 import com.github.dockerjava.zerodep.ZerodepDockerHttpClient;
+import io.github.oitstack.goblin.runtime.constant.Constants;
 import io.github.oitstack.goblin.runtime.utils.PropertyAndEnvUtils;
 import io.github.oitstack.goblin.runtime.config.RunTimeConfig;
 import lombok.Data;
@@ -44,8 +45,6 @@ import java.util.UUID;
  */
 @Data
 public class AutoRecycleDockerClient implements GoblinDockerClient {
-
-    private static final String LABEL_NAME_GROUP = "group";
 
     /**
      * docker client.
@@ -138,7 +137,7 @@ public class AutoRecycleDockerClient implements GoblinDockerClient {
     @Override
     public CreateContainerCmd createContainerCmd(String image) {
         Map<String, String> labels = new HashMap<>();
-        labels.put(LABEL_NAME_GROUP, this.getMetaData().getClientIdentify());
+        labels.put(Constants.LABEL_NAME_GROUP, this.getMetaData().getClientIdentify());
         return client.createContainerCmd(image).withLabels(labels);
     }
 

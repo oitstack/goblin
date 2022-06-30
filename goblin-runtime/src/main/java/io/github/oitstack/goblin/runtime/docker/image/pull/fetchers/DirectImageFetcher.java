@@ -16,13 +16,12 @@
 package io.github.oitstack.goblin.runtime.docker.image.pull.fetchers;
 
 import com.github.dockerjava.api.DockerClient;
-import com.github.dockerjava.api.model.Image;
 import io.github.oitstack.goblin.runtime.docker.image.DockerImageName;
-
-import java.util.List;
+import io.github.oitstack.goblin.runtime.docker.utils.DockerUtils;
 
 /**
  * Implementation of pull images, in a straightforward way.
+ *
  * @Author CuttleFish
  * @Date 2022/2/28 下午5:10
  */
@@ -30,6 +29,7 @@ public class DirectImageFetcher implements ImageFetcher {
 
     /**
      * Get the image directly.
+     *
      * @param dockerImageName
      * @return
      */
@@ -37,18 +37,13 @@ public class DirectImageFetcher implements ImageFetcher {
     public FetchContext fetch(DockerImageName dockerImageName, DockerClient dockerClient) {
         FetchContext fetchContext = FetchContext.builder().upStreamResult(false).pulledTimeStamp(System.currentTimeMillis()).build();
         try {
-            List<Image> imageList = dockerClient
-                    .listImagesCmd()
-                    .withImageNameFilter(dockerImageName.toIdentifyName())
-                    .exec();
 
-            if (imageList == null || imageList.isEmpty()) {
+            if (!DockerUtils.imageExist(dockerClient, dockerImageName)) {
                 dockerClient.pullImageCmd(dockerImageName.toIdentifyName())
                         .withTag(dockerImageName.getVersion().getVersionDesc())
                         .start()
                         .awaitCompletion();
             }
-
 
             fetchContext = fetchContext.toBuilder()
                     .pulledTimeStamp(System.currentTimeMillis())

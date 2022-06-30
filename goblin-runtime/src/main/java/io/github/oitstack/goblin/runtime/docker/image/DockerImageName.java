@@ -167,7 +167,7 @@ public class DockerImageName {
 
 
     public String getUnversionedPart() {
-        return (this.registry == null ? "" : this.registry + SLASH) + this.repository;
+        return ((this.registry == null  || "".equals(this.registry))? "" : this.registry + SLASH) + this.repository;
     }
 
     public DockerImageName cloneWithRegistry(String registry) {

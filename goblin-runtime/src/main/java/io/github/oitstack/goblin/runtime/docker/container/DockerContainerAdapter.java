@@ -22,6 +22,7 @@ import com.google.common.collect.ImmutableMap;
 import io.github.oitstack.goblin.runtime.Runtime;
 import io.github.oitstack.goblin.runtime.RuntimeAdapter;
 import io.github.oitstack.goblin.runtime.config.RunTimeConfig;
+import io.github.oitstack.goblin.runtime.constant.Constants;
 import io.github.oitstack.goblin.runtime.docker.client.AutoRecycleDockerClient;
 import io.github.oitstack.goblin.runtime.docker.client.GoblinDockerClient;
 import io.github.oitstack.goblin.runtime.docker.image.DockerImage;
@@ -202,7 +203,7 @@ public class DockerContainerAdapter<T extends DockerContainerAdapter<T>> extends
             }
             try {
                 CreateContainerCmd createContainerCmd = buildCreateCommand();
-                String label = encodeCommand(createContainerCmd);
+                String label = encodeCommandExceptForGroup(createContainerCmd);
                 if (RunTimeConfig.getInstance().getContainerEnableReuseFlag()) {
                     this.containerId = findContainerByLabel(label);
                 }
@@ -250,18 +251,23 @@ public class DockerContainerAdapter<T extends DockerContainerAdapter<T>> extends
     }
 
     /**
-     * md5 of the command.
+     * md5 of the command, except for label of group.
      *
      * @param createContainerCmd
      * @return
      */
-    private String encodeCommand(CreateContainerCmd createContainerCmd) {
-        String cmdJson = JsonTool.toJSONString(createContainerCmd);
+    private String encodeCommandExceptForGroup(CreateContainerCmd createContainerCmd) {
+        Map<String, String> labels = createContainerCmd.getLabels();
+        String group = labels.get(Constants.LABEL_NAME_GROUP);
+        labels.remove(Constants.LABEL_NAME_GROUP);
 
+        String cmdJson = JsonTool.toJSONString(createContainerCmd);
         String cmdMd5 = UUID.randomUUID().toString();
         if (StringUtils.isNotBlank(cmdJson)) {
             cmdMd5 = MD5Util.signature(cmdJson);
         }
+
+        labels.put(Constants.LABEL_NAME_GROUP, group);
         return cmdMd5;
     }
 
@@ -272,6 +278,7 @@ public class DockerContainerAdapter<T extends DockerContainerAdapter<T>> extends
      * @return
      */
     private String findContainerByLabel(String label) {
+
         return StringUtils.isNotBlank(label) ?
                 this.goblinDockerClient.listContainersCmd()
                         .withLabelFilter(ImmutableMap.of(MD5_LABEL, label))

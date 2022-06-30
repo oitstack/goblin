@@ -20,11 +20,10 @@ import com.github.dockerjava.api.command.CreateContainerCmd;
 import com.github.dockerjava.api.command.InspectContainerResponse;
 import com.github.dockerjava.api.model.Bind;
 import com.github.dockerjava.api.model.ExposedPort;
-import com.github.dockerjava.api.model.Image;
 import com.github.dockerjava.api.model.Volume;
-import io.github.oitstack.goblin.runtime.docker.image.cache.ImageCache;
 import io.github.oitstack.goblin.runtime.config.RunTimeConfig;
 import io.github.oitstack.goblin.runtime.docker.image.DockerImageName;
+import io.github.oitstack.goblin.runtime.docker.image.cache.ImageCache;
 import io.github.oitstack.goblin.runtime.docker.utils.DockerUtils;
 import io.github.oitstack.goblin.runtime.docker.utils.StringUtils;
 import io.github.oitstack.goblin.runtime.utils.MixAll;
@@ -111,13 +110,13 @@ public class DamoclesManager {
             return;
         }
 
-        List<Image> imageList = client.listImagesCmd().withImageNameFilter(imageName.toIdentifyName()).exec();
-        if (imageList == null || imageList.isEmpty()) {
+        if (!DockerUtils.imageExist(client, imageName)) {
             client.pullImageCmd(imageName.toIdentifyName())
                     .withTag(imageName.getVersion().getVersionDesc())
                     .start()
                     .awaitCompletion();
         }
+
 
         this.imageCache.refresh(imageName, client);
     }

@@ -19,14 +19,18 @@ import com.github.dockerjava.api.DockerClient;
 import com.github.dockerjava.api.command.ExecCreateCmdResponse;
 import com.github.dockerjava.api.command.InspectContainerResponse;
 import com.github.dockerjava.api.model.ExposedPort;
+import com.github.dockerjava.api.model.Image;
 import com.github.dockerjava.api.model.Network;
 import com.github.dockerjava.api.model.Ports;
 import io.github.oitstack.goblin.runtime.RuntimeOperation;
+import io.github.oitstack.goblin.runtime.docker.image.DockerImageName;
 import io.github.oitstack.goblin.runtime.transfer.MountableFile;
 import lombok.experimental.UtilityClass;
 import org.apache.commons.compress.archivers.tar.TarArchiveEntry;
 import org.apache.commons.compress.archivers.tar.TarArchiveOutputStream;
 import org.apache.commons.io.IOUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -43,6 +47,8 @@ import java.util.List;
  */
 @UtilityClass
 public class DockerUtils {
+    public final static Logger LOGGER = LoggerFactory.getLogger(DockerUtils.class);
+
     public static final boolean IN_A_CONTAINER = new File("/.dockerenv").exists();
 
     /**
@@ -158,5 +164,32 @@ public class DockerUtils {
                 callback.getStdout(),
                 callback.getStderr());
         return result;
+    }
+
+    /**
+     *  Determine whether the current docker image exists on target docker host.
+     */
+    public static boolean imageExist(DockerClient client, DockerImageName imageName) {
+        List<Image> imageList = client.listImagesCmd().withImageNameFilter(imageName.toIdentifyName()).exec();
+        if (imageList == null || imageList.isEmpty()) {
+            return false;
+        }
+
+        boolean exist = imageList.stream()
+                .anyMatch(image -> {
+                    if (image.getRepoTags() == null) {
+                        return false;
+                    }
+                    for (String tag : image.getRepoTags()) {
+                        if (imageName.getRawName().equals(tag)) {
+                            return true;
+                        }
+                    }
+
+                    return false;
+                });
+
+        LOGGER.debug("docker image exist:{} in target host, imageRawName={}.", exist, imageName.getRawName());
+        return exist;
     }
 }
