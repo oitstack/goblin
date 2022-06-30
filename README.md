@@ -7,7 +7,7 @@
 它具有以下能力：
 * 依托docker容器化技术，构建单元测试过程中所依赖的中间件环境，减轻单元测试开发人员编写mock的工作量
 * 自研了一套轻量级容器编排技术，解决了接口自动化测试过程中，依赖的服务树整体环境统一拉起的问题
-* 提供了一套数据集合断言工具，方便单元测试开发人员以声明式的方式构造数据和对单测进行断言
+* 提供了一套数据自动准备和自动断言工具，方便单元测试开发人员以声明式的方式构造、清理数据和对单测进行断言
 * 内置Mock Server，为三方接口mock提供统一编程界面
 * 提供了rocketMq、redis cluster的单docker容器解决方案，在节省资源的同时，加速了启动速度
 * 提供丰富的扩展点，支持用户自定义中间件扩展、自定义数据集合断言规则等
@@ -67,8 +67,9 @@ UserServiceTest#testGetUserById-mysql.xml
 </dataset>
 ```
 ---
-## Communication
-
-
-
+## Learn it & Contact us
+* 使用文档: <https://github.com/oitstack/goblin/wiki/Goblin%E4%BD%BF%E7%94%A8%E6%96%87%E6%A1%A3>
+* 实现原理: <https://github.com/oitstack/goblin/wiki/Goblin%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86>
+* Issues: <https://github.com/oitstack/goblin/issues>
+* Gips: <https://github.com/oitstack/goblin/wiki/Goblin-Improvement-Proposal>
 ---
