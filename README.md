@@ -29,7 +29,15 @@
 ```xml
     <dependency>
         <groupId>io.github.oitstack</groupId>
-        <artifactId>goblin-contains-mysql</artifactId>
+        <artifactId>goblin-container-mysql</artifactId>
+        <version>${goblin.version}</version>
+    </dependency>
+```
+引入扩展依赖：例如需要使用mysql自动数据构建和断言工具，则引入mysql-unit包，其他类似
+```xml
+    <dependency>
+        <groupId>io.github.oitstack</groupId>
+        <artifactId>goblin-mysql-unit</artifactId>
         <version>${goblin.version}</version>
     </dependency>
 ```
