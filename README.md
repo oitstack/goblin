@@ -80,5 +80,5 @@ UserServiceTest#testGetUserById-mysql.xml
 * 实现原理: <https://github.com/oitstack/goblin/wiki/Goblin%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86>
 * Issues: <https://github.com/oitstack/goblin/issues>
 * Gips: <https://github.com/oitstack/goblin/wiki/Goblin-Improvement-Proposal>
-* Wechat Group:![](https://github.com/oitstack/goblin_material/blob/main/wechat_group.png?raw)
+* Wechat Group:![20220716131608.png](https://s2.loli.net/2022/07/16/m2oQyp8IxdfX9vE.png)
 ---
