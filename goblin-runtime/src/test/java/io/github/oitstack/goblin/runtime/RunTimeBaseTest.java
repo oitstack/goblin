@@ -58,4 +58,22 @@ public class RunTimeBaseTest {
     public void voidTest() {
 
     }
+    public static<T> void  change(T ss){
+        System.out.println(ss);
+    }
+    static interface Itest<T>{
+        public void change(T ss);
+    }
+   static class TestImpl implements Itest<Long>{
+        public void change(Long ss){
+            System.out.println(ss);
+        }
+
+    }
+    public static void main(String[] args) {
+        String s="554669163767922689";
+        Itest it=new TestImpl();
+        it.change(s);
+    }
+
 }
