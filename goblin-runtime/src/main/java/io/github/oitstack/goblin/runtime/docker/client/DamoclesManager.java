@@ -166,7 +166,7 @@ public class DamoclesManager {
         binds.add(new Bind(getRemoteDockerUnixSocketPath(dockerHost), new Volume("/var/run/docker.sock")));
         String containerId = createContainerCmd
                 .withBinds(binds)
-                .withExposedPorts(new ExposedPort(8080))
+                .withExposedPorts(new ExposedPort(EXPOSED_PORT))
                 .withName("goblin-damocles-" + clientIdentify)
                 .withPublishAllPorts(true)
                 .withPrivileged(true)
