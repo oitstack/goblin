@@ -32,6 +32,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.URI;
@@ -66,7 +68,7 @@ public class DamoclesManager {
      */
     private static final int EXPOSED_PORT = 8080;
 
-    private static final String DEFAULT_DAMOCLES_TAG = "oitstack/damocles:v0.0.1";
+    private static final String DEFAULT_DAMOCLES_TAG = "oitstack/damocles:v0.0.2";
     private AtomicBoolean damoclesStarted = new AtomicBoolean(false);
 
     /**
@@ -139,11 +141,12 @@ public class DamoclesManager {
             Socket clientSocket = new Socket();
             try {
                 clientSocket.connect(new InetSocketAddress(host, port), 5 * 1000);
-
+                OutputStream output = clientSocket.getOutputStream();
                 Executors.newSingleThreadScheduledExecutor().scheduleWithFixedDelay(() -> {
                     try {
-                        clientSocket.sendUrgentData(0xFF);
-                    } catch (IOException e) {
+                        PrintWriter writer = new PrintWriter(output, true);
+                        writer.println("PING");
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }, 3, 1, TimeUnit.SECONDS);

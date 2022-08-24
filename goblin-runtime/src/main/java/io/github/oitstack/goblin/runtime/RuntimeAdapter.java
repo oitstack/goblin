@@ -80,13 +80,15 @@ public abstract class RuntimeAdapter<T extends RuntimeAdapter<T>> implements Run
     public T start() {
 
         int i = 0;
-        return (T) ensureInit.apply(() -> {
+         T result=(T) ensureInit.apply(() -> {
             try {
                 return startAsync().get(configure.getCreateRuntimeTimeout(), TimeUnit.MILLISECONDS);
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
         });
+        onStarted();
+        return result;
 
     }
 
@@ -96,5 +98,7 @@ public abstract class RuntimeAdapter<T extends RuntimeAdapter<T>> implements Run
             return doStart();
         });
     }
+    protected void onStarted(){
 
+    }
 }
