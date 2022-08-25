@@ -20,7 +20,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>io.github.oitstack</groupId>
   <artifactId>goblin-parent</artifactId>
-  <version>0.0.4</version>
+  <version>0.0.5-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>goblin-parent</name>
   <description>Goblin is a lightweight testing framework.</description>
@@ -61,7 +61,7 @@
   </distributionManagement>
   <properties>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <revision>0.0.4</revision>
+    <revision>0.0.5-SNAPSHOT</revision>
     <maven.compiler.source>8</maven.compiler.source>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.target>8</maven.compiler.target>
