@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>io.github.oitstack</groupId>
+    <artifactId>goblin-parent</artifactId>
+    <version>0.0.4</version>
+  </parent>
+  <groupId>io.github.oitstack</groupId>
+  <artifactId>goblin-all</artifactId>
+  <version>0.0.4</version>
+  <licenses>
+    <license>
+      <name>Apache License, Version 2.0</name>
+      <url>https://www.apache.org/licenses/LICENSE-2.0</url>
+    </license>
+  </licenses>
+  <properties>
+    <maven.compiler.source>8</maven.compiler.source>
+    <maven.compiler.target>8</maven.compiler.target>
+  </properties>
+  <dependencies>
+    <dependency>
+      <groupId>io.github.oitstack</groupId>
+      <artifactId>goblin-runtime</artifactId>
+      <version>${revision}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.github.oitstack</groupId>
+      <artifactId>goblin-core</artifactId>
+      <version>${revision}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.github.oitstack</groupId>
+      <artifactId>goblin-spi</artifactId>
+      <version>${revision}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.github.oitstack</groupId>
+      <artifactId>goblin-spring-test-starter</artifactId>
+      <version>${revision}</version>
+    </dependency>
+  </dependencies>
+</project>
