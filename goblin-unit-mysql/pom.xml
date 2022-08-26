@@ -33,13 +33,16 @@
             <groupId>io.github.oitstack</groupId>
             <artifactId>goblin-unit-db</artifactId>
             <version>${revision}</version>
-            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>io.github.oitstack</groupId>
             <artifactId>goblin-spi</artifactId>
             <version>${revision}</version>
-            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.26</version>
         </dependency>
         <dependency>
             <groupId>org.dbunit</groupId>

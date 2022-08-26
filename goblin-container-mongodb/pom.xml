@@ -17,7 +17,12 @@
             <groupId>io.github.oitstack</groupId>
             <artifactId>goblin-core</artifactId>
             <version>${revision}</version>
-            <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.26</version>
+        </dependency>
+
     </dependencies>
 </project>
