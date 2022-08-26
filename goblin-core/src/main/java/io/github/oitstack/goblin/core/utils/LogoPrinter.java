@@ -21,8 +21,8 @@ import org.slf4j.LoggerFactory;
 /**
  * Print project info.
  */
-public class LoggerPrinter {
-    private static final Logger LOGGER = LoggerFactory.getLogger(LoggerPrinter.class);
+public class LogoPrinter {
+    private static final Logger LOGGER = LoggerFactory.getLogger(LogoPrinter.class);
 
     public static void print() {
         StringBuilder str = new StringBuilder("\n");

@@ -5,11 +5,11 @@
   <parent>
     <groupId>io.github.oitstack</groupId>
     <artifactId>goblin-parent</artifactId>
-    <version>0.0.5-SNAPSHOT</version>
+    <version>0.0.6</version>
   </parent>
   <groupId>io.github.oitstack</groupId>
   <artifactId>goblin-all</artifactId>
-  <version>0.0.5-SNAPSHOT</version>
+  <version>0.0.6</version>
   <licenses>
     <license>
       <name>Apache License, Version 2.0</name>
@@ -39,6 +39,41 @@
     <dependency>
       <groupId>io.github.oitstack</groupId>
       <artifactId>goblin-spring-test-starter</artifactId>
+      <version>${revision}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.github.oitstack</groupId>
+      <artifactId>goblin-container-jdbc</artifactId>
+      <version>${revision}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.github.oitstack</groupId>
+      <artifactId>goblin-container-mysql</artifactId>
+      <version>${revision}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.github.oitstack</groupId>
+      <artifactId>goblin-container-mongodb</artifactId>
+      <version>${revision}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.github.oitstack</groupId>
+      <artifactId>goblin-container-redis</artifactId>
+      <version>${revision}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.github.oitstack</groupId>
+      <artifactId>goblin-container-rediscluster</artifactId>
+      <version>${revision}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.github.oitstack</groupId>
+      <artifactId>goblin-unit-db</artifactId>
+      <version>${revision}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.github.oitstack</groupId>
+      <artifactId>goblin-unit-mysql</artifactId>
       <version>${revision}</version>
     </dependency>
   </dependencies>

@@ -20,7 +20,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>io.github.oitstack</groupId>
   <artifactId>goblin-parent</artifactId>
-  <version>0.0.5-SNAPSHOT</version>
+  <version>0.0.6</version>
   <packaging>pom</packaging>
   <name>goblin-parent</name>
   <description>Goblin is a lightweight testing framework.</description>
@@ -43,6 +43,13 @@
     <module>goblin-core</module>
     <module>goblin-spring-test-starter</module>
     <module>goblin-all</module>
+    <module>goblin-unit-db</module>
+    <module>goblin-unit-mysql</module>
+    <module>goblin-container-jdbc</module>
+    <module>goblin-container-mysql</module>
+    <module>goblin-container-redis</module>
+    <module>goblin-container-rediscluster</module>
+    <module>goblin-container-mongodb</module>
   </modules>
   <scm>
     <connection>scm:git:git://github.com/oitstack/goblin.git</connection>
@@ -61,7 +68,7 @@
   </distributionManagement>
   <properties>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <revision>0.0.5-SNAPSHOT</revision>
+    <revision>0.0.6</revision>
     <maven.compiler.source>8</maven.compiler.source>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.target>8</maven.compiler.target>

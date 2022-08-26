@@ -17,13 +17,12 @@ package io.github.oitstack.goblin.core;
 
 import io.github.oitstack.goblin.core.utils.ConfigParseUtils;
 import io.github.oitstack.goblin.core.utils.EnvExtUtils;
-import io.github.oitstack.goblin.core.utils.LoggerPrinter;
+import io.github.oitstack.goblin.core.utils.LogoPrinter;
 import io.github.oitstack.goblin.runtime.utils.PropertyAndEnvUtils;
 import io.github.oitstack.goblin.spi.GoblinLifeCycleInterceptorManager;
 import io.github.oitstack.goblin.spi.context.Configuration;
 import io.github.oitstack.goblin.spi.context.GoblinContext;
 import io.github.oitstack.goblin.spi.context.Image;
-import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -80,6 +79,7 @@ public class Goblin {
     this.properties = configuration.getConfMap();
 
     if (started.compareAndSet(false, true)) {
+      LogoPrinter.print();
 
       GoblinContext context = buildContext();
 
@@ -93,7 +93,6 @@ public class Goblin {
 
       postProcess(context);
 
-      LoggerPrinter.print();
     }
   }
 

@@ -36,5 +36,48 @@
             <artifactId>goblin-spring-test-starter</artifactId>
             <version>${revision}</version>
         </dependency>
+
+
+        <dependency>
+            <groupId>io.github.oitstack</groupId>
+            <artifactId>goblin-container-jdbc</artifactId>
+            <version>${revision}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.github.oitstack</groupId>
+            <artifactId>goblin-container-mysql</artifactId>
+            <version>${revision}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.github.oitstack</groupId>
+            <artifactId>goblin-container-mongodb</artifactId>
+            <version>${revision}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.github.oitstack</groupId>
+            <artifactId>goblin-container-redis</artifactId>
+            <version>${revision}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.github.oitstack</groupId>
+            <artifactId>goblin-container-rediscluster</artifactId>
+            <version>${revision}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.github.oitstack</groupId>
+            <artifactId>goblin-unit-db</artifactId>
+            <version>${revision}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.github.oitstack</groupId>
+            <artifactId>goblin-unit-mysql</artifactId>
+            <version>${revision}</version>
+        </dependency>
     </dependencies>
 </project>

@@ -78,6 +78,13 @@
         <module>goblin-core</module>
         <module>goblin-spring-test-starter</module>
         <module>goblin-all</module>
+        <module>goblin-unit-db</module>
+        <module>goblin-unit-mysql</module>
+        <module>goblin-container-jdbc</module>
+        <module>goblin-container-mysql</module>
+        <module>goblin-container-redis</module>
+        <module>goblin-container-rediscluster</module>
+        <module>goblin-container-mongodb</module>
     </modules>
 
     <properties>
@@ -85,7 +92,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
-        <revision>0.0.5</revision>
+        <revision>0.0.6</revision>
     </properties>
 
     <build>
