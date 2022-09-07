@@ -3,7 +3,10 @@ package io.github.oitstack.goblin.container.mongodb;
 
 import io.github.oitstack.goblin.core.Goblin;
 import io.github.oitstack.goblin.core.GoblinContainer;
+import io.github.oitstack.goblin.runtime.RuntimeOperation;
 import io.github.oitstack.goblin.runtime.docker.container.DockerContainerAdapter;
+import io.github.oitstack.goblin.runtime.docker.utils.JsonTool;
+import io.github.oitstack.goblin.runtime.wait.Wait;
 import io.github.oitstack.goblin.spi.context.Image;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,8 +38,9 @@ public class GoblinMongoDbContainer extends DockerContainerAdapter implements Go
             if (null != conf.getMongodb() && null != conf.getMongodb().getDatabase()) {
                 this.placeholders.put("DATABASENAME", conf.getMongodb().getDatabase());
                 this.placeholders.put("URL", String.format("mongodb://%s:%s@%s:%s/%s?authSource=admin", ROOT_USERNAME, ROOT_PASSWORD, this.getHost(), this.getPortByInnerPort(27017), conf.getMongodb().getDatabase()));
-                //this.execInRuntime(buildMongoEvalCommand(buildMongoCreateUserCommandAtDB(conf.getMongodb().getDatabase())));
-
+                RuntimeOperation.ExecResult execResult=this.execInRuntime(buildMongoEvalCommand(buildMongoCreateUserCommandAtDB(conf.getMongodb().getDatabase())));
+        System.out.println(
+            "mongodb execResult:" + JsonTool.toJSONString(execResult));
             } else {
                 this.placeholders.put("URL", String.format("mongodb://%s:%s@%s:%s", ROOT_USERNAME, ROOT_PASSWORD, this.getHost(), this.getPortByInnerPort(27017)));
             }
@@ -67,11 +71,7 @@ public class GoblinMongoDbContainer extends DockerContainerAdapter implements Go
     protected void blockUntilContainerStarted() {
         //FIXME:
         super.blockUntilContainerStarted();
-        try {
-            Thread.sleep(10000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        Wait.forLogMessage("(?i).*waiting for connections.*", 2).waitUntilReady(this);
     }
 
     private String[] buildMongoEvalCommand(final String command) {

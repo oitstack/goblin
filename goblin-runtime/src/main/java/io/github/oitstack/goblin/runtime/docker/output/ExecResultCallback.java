@@ -78,7 +78,7 @@ public class ExecResultCallback extends ResultCallbackTemplate<ExecResultCallbac
       OutputFrame outputFrame, List<BaseListener> matchListeners) {
     String utf8String = outputFrame.getUtf8String();
     matchListeners.forEach(
-        l -> new OutputFrame(OutputFrame.OutputType.STDOUT, utf8String.getBytes()));
+        l -> l.accept(new OutputFrame(OutputFrame.OutputType.STDOUT, utf8String.getBytes())));
   }
 
   private synchronized void processRawFrame(
@@ -131,7 +131,7 @@ public class ExecResultCallback extends ResultCallbackTemplate<ExecResultCallbac
         logString.setLength(0);
       }
       String fLine = line;
-      matchListeners.forEach(l -> new OutputFrame(OutputFrame.OutputType.STDOUT, fLine.getBytes()));
+      matchListeners.forEach(l -> l.accept(new OutputFrame(OutputFrame.OutputType.STDOUT, fLine.getBytes())));
     }
     logString.append(lines.get(lines.size() - 1));
   }
