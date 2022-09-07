@@ -6,6 +6,7 @@ import io.github.oitstack.goblin.core.GoblinContainer;
 import io.github.oitstack.goblin.runtime.RuntimeOperation;
 import io.github.oitstack.goblin.runtime.docker.container.DockerContainerAdapter;
 import io.github.oitstack.goblin.runtime.docker.utils.JsonTool;
+import io.github.oitstack.goblin.runtime.docker.wait.strategy.DockerLogMessageWaitStrategy;
 import io.github.oitstack.goblin.runtime.wait.Wait;
 import io.github.oitstack.goblin.spi.context.Image;
 import org.slf4j.Logger;
@@ -71,7 +72,7 @@ public class GoblinMongoDbContainer extends DockerContainerAdapter implements Go
     protected void blockUntilContainerStarted() {
         //FIXME:
         super.blockUntilContainerStarted();
-        Wait.forLogMessage("(?i).*waiting for connections.*", 2).waitUntilReady(this);
+        new DockerLogMessageWaitStrategy().withRegEx("(?i).*waiting for connections.*").withTimes(2).waitUntilReady(this);
     }
 
     private String[] buildMongoEvalCommand(final String command) {

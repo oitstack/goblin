@@ -21,10 +21,6 @@ public class Wait {
                 .usingTls();
     }
 
-    public static DockerLogMessageWaitStrategy forLogMessage(String regex, int times) {
-        return new DockerLogMessageWaitStrategy().withRegEx(regex).withTimes(times);
-    }
-
     public static io.github.oitstack.goblin.runtime.wait.RuntimeHealthcheckWaitStrategy forHealthcheck() {
         return new RuntimeHealthcheckWaitStrategy();
     }
