@@ -141,6 +141,12 @@ public class DockerContainerAdapter<T extends DockerContainerAdapter<T>> extends
 
 
     @Override
+    public List<Integer> getExposedPorts() {
+        return Arrays.<Integer>asList(exposedPorts);
+    }
+
+
+    @Override
     public String getHost() {
         return this.goblinDockerClient.getDockerHostIpAddress();
     }
@@ -356,5 +362,8 @@ public class DockerContainerAdapter<T extends DockerContainerAdapter<T>> extends
         return DockerUtils.runCommandInContainer(this.goblinDockerClient,this.containerId, commands);
     }
 
+    public GoblinDockerClient getGoblinDockerClient() {
+        return goblinDockerClient;
+    }
 }
 

@@ -24,6 +24,9 @@ import com.github.dockerjava.api.model.Network;
 import com.github.dockerjava.api.model.Ports;
 import io.github.oitstack.goblin.runtime.RuntimeOperation;
 import io.github.oitstack.goblin.runtime.docker.image.DockerImageName;
+import io.github.oitstack.goblin.runtime.docker.output.ExecResultCallback;
+import io.github.oitstack.goblin.runtime.docker.output.OutputFrame;
+import io.github.oitstack.goblin.runtime.docker.output.ToStringListener;
 import io.github.oitstack.goblin.runtime.transfer.MountableFile;
 import lombok.experimental.UtilityClass;
 import org.apache.commons.compress.archivers.tar.TarArchiveEntry;
@@ -149,6 +152,10 @@ public class DockerUtils {
 
 
         ExecResultCallback callback = new ExecResultCallback();
+        ToStringListener errorListener=new ToStringListener();
+        ToStringListener stdoutListener=new ToStringListener();
+        callback.register(OutputFrame.OutputType.STDOUT,stdoutListener);
+        callback.register(OutputFrame.OutputType.STDERR,errorListener);
 
         try {
             dockerClient.execStartCmd(execCreateCmdResponse.getId()).exec(callback).awaitCompletion();
@@ -161,8 +168,8 @@ public class DockerUtils {
 
         final RuntimeOperation.ExecResult result = new RuntimeOperation.ExecResult(
                 String.valueOf(exitCode),
-                callback.getStdout(),
-                callback.getStderr());
+                stdoutListener.toUtf8String(),
+                errorListener.toUtf8String());
         return result;
     }
 

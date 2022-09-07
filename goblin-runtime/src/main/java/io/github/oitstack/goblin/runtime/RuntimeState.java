@@ -15,9 +15,16 @@
  */
 package io.github.oitstack.goblin.runtime;
 
+import com.github.dockerjava.api.command.InspectContainerResponse;
 import com.github.dockerjava.api.model.Bind;
+import com.github.dockerjava.api.model.ExposedPort;
+import com.github.dockerjava.api.model.Ports;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Container status and other information.
@@ -25,6 +32,15 @@ import java.util.List;
  * @Date 2022/2/18 下午9:13
  */
 public interface RuntimeState<D extends RuntimeState> {
+    default Set<Integer> getLivenessCheckPortNumbers() {
+
+        final Set<Integer> result = getExposedPorts().stream().map(this::getPortByInnerPort).distinct().collect(Collectors.toSet());
+
+//        result.addAll(getBoundPortNumbers());
+        return result;
+    }
+
+    List<Integer> getExposedPorts();
 
     /**
      * The host where the container is located.
@@ -59,6 +75,7 @@ public interface RuntimeState<D extends RuntimeState> {
      */
     String getRuntimeId();
 
+
     /**
      * Get privileged mode.
      * @return
@@ -76,4 +93,5 @@ public interface RuntimeState<D extends RuntimeState> {
      * @return
      */
     boolean isRunning();
+
 }

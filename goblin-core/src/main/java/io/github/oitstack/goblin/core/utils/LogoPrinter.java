@@ -25,13 +25,30 @@ public class LogoPrinter {
     private static final Logger LOGGER = LoggerFactory.getLogger(LogoPrinter.class);
 
     public static void print() {
-        StringBuilder str = new StringBuilder("\n");
-        str.append("  _____         _      _  _          _______          _ \n");
-        str.append(" / ____|       | |    | |(_)        |__   __|        | |\n");
-        str.append("| |  __   ___  | |__  | | _  _ __      | |  ___  ___ | |_ \n");
-        str.append("| | |_ | / _ \\ | '_ \\ | || || '_ \\     | | / _ \\/ __|| __|\n");
-        str.append("| |__| || (_) || |_) || || || | | |    | ||  __/\\__ \\| |_ \n");
-        str.append(" \\_____| \\___/ |_.__/ |_||_||_| |_|    |_| \\___||___/ \\__|\n\n");
-        LOGGER.info(str.toString());
+        String str = generateLogo();
+        LOGGER.info(str);
     }
+
+    private static String generateLogo() {
+        StringBuilder str = new StringBuilder("\n");
+        str.append(
+            " _______       _     _  _          _______                   ______       _             \n");
+        str.append(
+            "(_______)     | |   | |(_)        (_______)          _      / _____)     (_)  _         \n");
+        str.append(
+            " _   ___  ___ | |__ | | _ ____        _ _____  ___ _| |_   ( (____  _   _ _ _| |_ _____ \n");
+        str.append(
+            "| | (_  |/ _ \\|  _ \\| || |  _ \\      | | ___ |/___|_   _)   \\____ \\| | | | (_   _) ___ |\n");
+        str.append(
+            "| |___) | |_| | |_) ) || | | | |     | | ____|___ | | |_    _____) ) |_| | | | |_| ____|\n");
+        str.append(
+            " \\_____/ \\___/|____/ \\_)_|_| |_|     |_|_____|___/   \\__)  (______/|____/|_|  \\__)_____)\n");
+        str.append("                   [Produced by OPPO Internet Technology Team]");
+        return str.toString();
+    }
+
+    public static void main(String[] args) {
+    //
+        System.out.print(generateLogo());
+  }
 }

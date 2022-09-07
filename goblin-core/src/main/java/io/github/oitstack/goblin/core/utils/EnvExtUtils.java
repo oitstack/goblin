@@ -15,6 +15,7 @@
  */
 package io.github.oitstack.goblin.core.utils;
 
+
 import com.google.common.annotations.VisibleForTesting;
 
 import java.lang.reflect.Field;
