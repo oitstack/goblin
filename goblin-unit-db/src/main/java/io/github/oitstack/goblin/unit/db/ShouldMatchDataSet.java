@@ -27,5 +27,6 @@ import java.lang.annotation.*;
 @Target({ElementType.TYPE, ElementType.METHOD})
 @Documented
 public @interface ShouldMatchDataSet {
-
+    String[] ids() default {} ;
 }
+

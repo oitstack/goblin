@@ -45,6 +45,18 @@ public final class IOUtils {
 
         return result.toString();
     }
+    public static InputStream getStreamFromClasspathBaseResource(Class<?> resourceBase, String dataLocation) {
+
+        if(isFileAvailableOnClasspath(resourceBase, dataLocation)) {
+            return resourceBase.getResourceAsStream(dataLocation);
+        } else {
+            return null;
+        }
+
+    }
+    public static boolean isFileAvailableOnClasspath(Class<?> resourceBase, String dataLocation) {
+        return resourceBase.getResourceAsStream(dataLocation) != null;
+    }
 
     /**
      * Get specified file on the classpath.

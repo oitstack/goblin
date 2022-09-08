@@ -16,7 +16,7 @@
 package io.github.oitstack.goblin.runtime.docker.utils;
 
 /**
- * @Author CuttleFish 80317381
+ * @Author CuttleFish
  * @Date 2022/6/18 下午11:09
  */
 public class StringUtils {

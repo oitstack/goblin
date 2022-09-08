@@ -21,10 +21,11 @@ import java.lang.annotation.*;
 /**
  * The class or method marked with this annotation has the function of data set operation.
  */
+
 @Inherited
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE, ElementType.METHOD})
 @Documented
 public @interface UsingDataSet {
-
+    String[] ids() default {} ;
 }

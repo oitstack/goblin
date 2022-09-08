@@ -50,6 +50,14 @@
     <module>goblin-container-redis</module>
     <module>goblin-container-rediscluster</module>
     <module>goblin-container-mongodb</module>
+    <module>goblin-container-zookeeper</module>
+    <module>goblin-container-rocketmq</module>
+    <module>goblin-container-kafka</module>
+    <module>goblin-container-mockserver</module>
+    <module>goblin-container-elasticsearch</module>
+    <module>goblin-unit-redis</module>
+    <module>goblin-unit-elasticsearch</module>
+    <module>goblin-unit-mongodb</module>
   </modules>
   <scm>
     <connection>scm:git:git://github.com/oitstack/goblin.git</connection>

@@ -15,6 +15,7 @@
  */
 package io.github.oitstack.goblin.core;
 
+import io.github.oitstack.goblin.core.listener.GoblinLifecycleListener;
 import io.github.oitstack.goblin.core.utils.ConfigParseUtils;
 import io.github.oitstack.goblin.core.utils.EnvExtUtils;
 import io.github.oitstack.goblin.core.utils.LogoPrinter;
@@ -26,8 +27,10 @@ import io.github.oitstack.goblin.spi.context.Image;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.ServiceLoader;
 import java.util.concurrent.CountDownLatch;
@@ -53,9 +56,22 @@ public class Goblin {
   private volatile AtomicBoolean started = new AtomicBoolean(false);
 
   public static final String PLACE_HOLDER_TPL = "GOBLIN_%s_%s";
+  private List<GoblinLifecycleListener> listeners = new ArrayList<>();
 
-  private Goblin() {}
+  private Map<String, Map<String, GoblinContainer>> typeClassifyContainerMap = new HashMap<>();
 
+  private Goblin() {
+    regiestListeners();
+  }
+
+  private void regiestListeners() {
+    ServiceLoader<GoblinLifecycleListener> serviceLoader =
+        ServiceLoader.load(GoblinLifecycleListener.class);
+
+    for (GoblinLifecycleListener listener : serviceLoader) {
+      listeners.add(listener);
+    }
+  }
   /**
    * Get a singleton Goblin instance.
    *
@@ -93,9 +109,31 @@ public class Goblin {
 
       postProcess(context);
 
+      onCompleted();
     }
   }
 
+  private void onCompleted() {
+    listeners.forEach(l -> l.onStarted(this));
+  }
+
+  public Map<String, GoblinContainer> getContainerMapByType(String type) {
+    if (type == null) {
+      return null;
+    }
+    return typeClassifyContainerMap.get(type);
+  }
+
+  public GoblinContainer getContainerInstanceByTypeAndId(String type, String instanceId) {
+    if (type == null || instanceId == null) {
+      return null;
+    }
+    Map<String, GoblinContainer> containers = typeClassifyContainerMap.get(type);
+    if (null == containers) {
+      return null;
+    }
+    return containers.get(instanceId);
+  }
   /**
    * build GoblinContext which is used for Goblin context.
    *
@@ -244,12 +282,23 @@ public class Goblin {
                                 String.format(
                                     PLACE_HOLDER_TPL, image.getId().toUpperCase(), e.getKey()),
                                 e.getValue()));
-                containerMap.put(image.getId(), container);
+                recordContainer(container, image);
               } finally {
                 cdl.countDown();
               }
             })
         .start();
+  }
+
+  private void recordContainer(GoblinContainer container, Image image) {
+    containerMap.put(image.getId(), container);
+    Map<String, GoblinContainer> typeClassifyContainers =
+        typeClassifyContainerMap.get(image.getType());
+    if (null == typeClassifyContainers) {
+      typeClassifyContainers = new HashMap<>();
+      typeClassifyContainerMap.put(image.getType(), typeClassifyContainers);
+    }
+    typeClassifyContainers.put(image.getId(), container);
   }
 
   public Map<String, Object> getProperties() {
