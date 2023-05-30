@@ -183,7 +183,7 @@ public abstract class AbstractTestRule implements TestRule {
         String[] locations = null;
         if (null != locations && locations.length > 0) {
             for (String location : locations) {
-                InputStream stream = IOUtils.getStreamFromClassPathBaseResource(this.getClass(), location);
+                InputStream stream = IOUtils.getTextStreamFromClasspathBaseResourceWithPlaceHold(this.getClass(), location);
                 if (null == stream) {
                     String errMsg = "File specified in locations property are not present in classpath, or no files matching default name are found. " +
                             "Valid default locations are: " + location;
@@ -194,7 +194,7 @@ public abstract class AbstractTestRule implements TestRule {
             }
         } else {
             String defaultLocation = defaultDataSetLocationResolver.resolveDefaultDataSetLocation("-" + getName() + "." + getWorkingExtension());
-            InputStream stream = IOUtils.getStreamFromClassPathBaseResource(defaultDataSetLocationResolver.getResourceBase(), defaultLocation);
+            InputStream stream = IOUtils.getTextStreamFromClasspathBaseResourceWithPlaceHold(defaultDataSetLocationResolver.getResourceBase(), defaultLocation);
 
             if (null == stream) {
                 String errMsg = "File specified in locations property are not present in classpath, or no files matching default name are found. " +
@@ -214,7 +214,7 @@ public abstract class AbstractTestRule implements TestRule {
 
         String location = null;
         if (null != location && !location.isEmpty()) {
-            scriptContent = IOUtils.getStreamFromClassPathBaseResource(this.getClass(), location);
+            scriptContent = IOUtils.getTextStreamFromClasspathBaseResourceWithPlaceHold(this.getClass(), location);
             if (null == scriptContent) {
                 String errMsg = "File specified in locations property are not present in classpath, or no files matching default name are found. " +
                         "Valid default locations are: " + location;
@@ -224,7 +224,7 @@ public abstract class AbstractTestRule implements TestRule {
 
         } else {
             String defaultLocation = defaultDataSetLocationResolver.resolveDefaultDataSetLocation("-" + getName() + "-expected." + getWorkingExtension());
-            scriptContent = IOUtils.getStreamFromClassPathBaseResource(defaultDataSetLocationResolver.getResourceBase(), defaultLocation);
+            scriptContent = IOUtils.getTextStreamFromClasspathBaseResourceWithPlaceHold(defaultDataSetLocationResolver.getResourceBase(), defaultLocation);
 
             if (null == scriptContent) {
                 String errMsg = "No files matching default name are found. " +

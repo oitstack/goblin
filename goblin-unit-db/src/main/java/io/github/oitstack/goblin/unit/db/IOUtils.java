@@ -15,10 +15,10 @@
  */
 package io.github.oitstack.goblin.unit.db;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import io.github.oitstack.goblin.core.Goblin;
+
+import java.io.*;
+import java.util.Map;
 
 public final class IOUtils {
 
@@ -83,4 +83,52 @@ public final class IOUtils {
     }
 
 
+    public static InputStream getTextStreamFromClasspathBaseResourceWithPlaceHold(Class<?> resourceBase, String dataLocation) {
+
+        InputStream is= doGetStreamFromClasspathBaseResource(resourceBase,dataLocation);
+        if(null!=is){
+            return replacePlaceHoldForTextInputStream(is);
+        }else{
+            return null;
+        }
+
+    }
+
+    public static InputStream replacePlaceHoldForTextInputStream(InputStream is){
+        if(null==is){
+            return null;
+        }
+        byte[] bytes = new byte[0];
+        try {
+            bytes = new byte[is.available()];
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        try {
+            is.read(bytes);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        String str = new String(bytes);
+
+        for(Map.Entry<String,String> entry: Goblin.getInstance().getPlaceHolders().entrySet()){
+            str=str.replace("${"+entry.getKey()+"}",entry.getValue());
+        }
+        try {
+            is.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        return new ByteArrayInputStream(str.getBytes());
+    }
+    public static InputStream doGetStreamFromClasspathBaseResource(Class<?> resourceBase, String dataLocation) {
+
+        if(isFileAvailableOnClasspath(resourceBase, dataLocation)) {
+            return resourceBase.getResourceAsStream(dataLocation);
+        } else {
+            return null;
+        }
+
+    }
 }

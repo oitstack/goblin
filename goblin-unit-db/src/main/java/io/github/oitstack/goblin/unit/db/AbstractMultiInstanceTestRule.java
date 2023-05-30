@@ -143,7 +143,7 @@ public abstract class AbstractMultiInstanceTestRule implements TestRule {
         String[] locations = null;
         if (null != locations && locations.length > 0) {
             for (String location : locations) {
-                InputStream stream = IOUtils.getStreamFromClasspathBaseResource(this.getClass(), location);
+                InputStream stream = IOUtils.getTextStreamFromClasspathBaseResourceWithPlaceHold(this.getClass(), location);
                 if (null == stream) {
                     String errMsg = "File specified in locations property are not present in classpath, or no files matching default name are found. " +
                             "Valid default locations are: " + location;
@@ -154,7 +154,7 @@ public abstract class AbstractMultiInstanceTestRule implements TestRule {
             }
         } else {
             String defaultLocation = defaultDataSetLocationResolver.resolveDefaultDataSetLocation("-" + getName() + "#" + instanceId + "." + getWorkingExtension());
-            InputStream stream = IOUtils.getStreamFromClasspathBaseResource(defaultDataSetLocationResolver.getResourceBase(), defaultLocation);
+            InputStream stream = IOUtils.getTextStreamFromClasspathBaseResourceWithPlaceHold(defaultDataSetLocationResolver.getResourceBase(), defaultLocation);
 
             if (null == stream) {
                 String errMsg = "File specified in locations property are not present in classpath, or no files matching default name are found. " +
@@ -174,7 +174,7 @@ public abstract class AbstractMultiInstanceTestRule implements TestRule {
 
         String location = null;
         if (null != location && !location.isEmpty()) {
-            scriptContent = IOUtils.getStreamFromClasspathBaseResource(this.getClass(), location);
+            scriptContent = IOUtils.getTextStreamFromClasspathBaseResourceWithPlaceHold(this.getClass(), location);
             if (null == scriptContent) {
                 String errMsg = "File specified in locations property are not present in classpath, or no files matching default name are found. " +
                         "Valid default locations are: " + location;
@@ -184,7 +184,7 @@ public abstract class AbstractMultiInstanceTestRule implements TestRule {
 
         } else {
             String defaultLocation = defaultDataSetLocationResolver.resolveDefaultDataSetLocation("-" + getName() + "#" + instanceId + "-expected." + getWorkingExtension());
-            scriptContent = IOUtils.getStreamFromClasspathBaseResource(defaultDataSetLocationResolver.getResourceBase(), defaultLocation);
+            scriptContent = IOUtils.getTextStreamFromClasspathBaseResourceWithPlaceHold(defaultDataSetLocationResolver.getResourceBase(), defaultLocation);
 
             if (null == scriptContent) {
                 String errMsg = "No files matching default name are found. " +
