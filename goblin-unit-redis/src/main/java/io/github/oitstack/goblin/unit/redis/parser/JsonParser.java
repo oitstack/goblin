@@ -221,7 +221,7 @@ public class JsonParser {
 
         for(Object valueObject:valuesArray){
             JSONObject valueScopeObject = (JSONObject) valueObject;
-            listValues.add(valueSerializer.serialize((String)valueScopeObject.get(VALUES_TOKEN)));
+            listValues.add(valueSerializer.serialize((String)valueScopeObject.get(VALUE_TOKEN)));
         }
         return listValues;
     }
